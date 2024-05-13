@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+.container {
+  width: 1694px;
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+.content {
+  flex: 1;
+  min-height: 1000px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}

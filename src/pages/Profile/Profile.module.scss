@@ -1,0 +1,99 @@
+.wrapper {
+  max-width: 1451px;
+  display: flex; // Sử dụng flexbox để căn các phần tử nằm ngang nhau
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+.profileContainer {
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column; // Thay đổi hướng flex từ ngang sang dọc
+  align-items: center; // Căn giữa các phần tử con theo chiều ngang
+
+  &:first-child {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    flex-shrink: 1;
+  }
+}
+
+.avatar {
+  margin-bottom: 20px;
+  order: 2; // Đưa avatar xuống dưới bằng cách sử dụng order
+}
+
+.userInfo {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin-left: 0; // Không cần margin-left nữa
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  background-color: #fff;
+  order: 1; // Đưa userInfo lên trên bằng cách sử dụng order
+  margin-top: 60px;
+  strong {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  .addressHome {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+  }
+  .addressCompany {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+  }
+}
+.userInfo > div {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; // Tạo khoảng cách giữa các thông tin
+  width: 100%; // Đảm bảo rằng các phần tử con sẽ chiếm hSết không gian ngang của cha
+}
+
+.userInfo > div label {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  min-width: 150px; // Đặt độ rộng tối thiểu của nhãn
+  margin-right: -50px; // Tạo khoảng cách giữa nhãn và các phần tử con khác
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+input[type="date"],
+input[type="text"] {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  width: 200px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+// Conditional styling for active sex
+.sexListItem.active {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+// Optional: Styling for focused inputs
+input:focus {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

@@ -1,0 +1,64 @@
+.wrapper {
+  width: 243px;
+  border: 1px solid #000000;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.header-text {
+  font-size: 26px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 10px;
+  font-weight: bold; /* Văn bản in đậm */
+}
+
+.icon-wrapper {
+  margin-left: auto; /* Đẩy icon sang phải cùng */
+}
+.icon-wrapper:hover {
+  background-color: red;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.menu {
+  font-size: 26px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  margin-left: -40px; /* Dịch sang trái 5px */
+}
+
+.menu-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 26px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.menu-item:hover {
+  background-color: aqua;
+}
+
+.item-icon {
+  margin-right: 15px;
+}

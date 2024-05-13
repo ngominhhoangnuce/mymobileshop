@@ -1,0 +1,17 @@
+@import "normalize.css";
+
+.root {
+  --primary: #fe2c55; //màu chủ đạo
+}
+* {
+  box-sizing: border-box;
+}
+.html {
+  font-size: 70%;
+}
+.body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+}

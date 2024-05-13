@@ -1,0 +1,118 @@
+.login-form {
+  background-color: #0093e9; // Màu nền xanh
+  padding: 20px;
+  border-radius: 10px; // Bo góc
+  width: 100vw; // Chiều rộng của toàn bộ trang
+  height: 100vh; // Chiều cao của toàn bộ trang
+  display: flex; // Hiển thị login form dưới dạng flex container
+  justify-content: center; // Căn giữa theo chiều ngang
+  align-items: center; // Căn giữa theo chiều dọc
+}
+.form-group {
+  position: relative;
+  display: flex; /* Sử dụng flexbox để căn chỉnh các input vào giữa form */
+  flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+  align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+  justify-content: center;
+  margin-bottom: 20px; /* Khoảng cách 10px giữa các nhóm trong form theo chiều dọc */
+}
+.logo-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; // Đảm bảo rằng logo-image chiếm toàn bộ chiều rộng của parent
+  margin-bottom: 70px; // Khoảng cách giữa logo và các input
+}
+
+.logo-login img {
+  width: 120px; // Kích thước của hình ảnh logo
+  height: 120px; // Kích thước của hình ảnh logo
+  border-radius: 50%; // Tạo hình tròn cho background
+  background-color: #ffffff; // Màu trắng
+  padding: 20px; // Khoảng cách giữa hình tròn và hình ảnh
+}
+
+.input-with-icon {
+  display: flex; /* Sử dụng flexbox để căn chỉnh các input vào giữa form */
+  flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+  align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+  position: relative;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.input-field {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  border: none;
+  width: 500px;
+  height: 70px;
+  border-radius: 5px;
+  padding-left: 60px; // Đảm bảo khoảng cách đủ cho icon
+  &:hover {
+    width: 500px;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 47%;
+  left: 30px; // Điều chỉnh vị trí của icon bên trong input
+  transform: translateY(-50%);
+}
+.button-container {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  display: flex;
+  justify-content: center; // Căn giữa theo chiều ngang
+}
+
+button[type="submit"] {
+  width: 250px;
+  height: 48px;
+  background-color: #fff; // Màu nền của button
+  border: none; // Loại bỏ đường viền
+  border-radius: 5px; // Bo góc
+  color: black; // Màu chữ
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  &:hover {
+    background-color: #ff0000; // Màu đỏ khi hover
+    color: #ffffff; // Màu chữ trắng khi hover
+  }
+}
+
+.register-link {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  p {
+    width: 300px;
+    margin-top: 80px;
+  }
+}
+.checkbox-forgot-password {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+}
+input[type="checkbox"] {
+  margin-right: 5px; /* Khoảng cách giữa checkbox và chữ */
+  cursor: pointer; /* Đổi con trỏ chuột khi di chuột qua checkbox */
+}
+
+.checkbox-label {
+  color: #ffffff;
+  margin-right: 250px; // Để tạo khoảng cách giữa checkbox và dòng "Bạn quên mật khẩu?"
+}
+.forgot-password {
+  color: #fff;
+
+  &:hover {
+    color: red; // Đổi sang màu đỏ khi di chuột qua
+  }
+}
