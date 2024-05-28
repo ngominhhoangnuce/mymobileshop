@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind"; // Import classNames
-import styles from "./Profile.module.scss"; // Import file SCSS cho phần giao diện
+import styles from "./Profile.scss"; // Import file SCSS cho phần giao diện
 import images from "src/assets"; // Import ảnh từ thư mục assets
 
 const cx = classNames.bind(styles); // Kết hợp styles với classNames

@@ -1,0 +1,163 @@
+.homepage {
+  .homepage-header {
+    width: 1455px;
+    height: 100px;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column; /* Chia theo chiều dọc */
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0px;
+    padding: 0 20px;
+    border: 1px solid #000000;
+
+    .header-top,
+    .header-bottom {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-top h1 {
+      font-size: 26px;
+      margin-left: -710px;
+      margin-top: 20px;
+    }
+
+    .header-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-left: -10px;
+      margin-right: auto;
+      margin-top: -15px;
+
+      h1 {
+        margin-right: 20px;
+        font-size: 22px;
+        font-weight: 500;
+        margin-left: 10px;
+      }
+      .search-container {
+        display: flex;
+        align-items: center;
+        margin-left: 960px;
+        position: relative;
+
+        .search-input {
+          width: 360px;
+          height: 35px;
+          border-radius: 0px;
+          font-size: 12px;
+          margin-top: 0px;
+          position: relative; /* Cho phép định vị tuyệt đối cho icon */
+        }
+
+        .icons {
+          margin-left: -40px; /* Đặt icon vào vị trí tuyệt đối bên trong input */
+          margin-top: 20px;
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+        }
+
+        .iconsearch,
+        .iconfilter {
+          color: black;
+          flex: 0 0 auto;
+          width: 40px;
+          height: 20px; /* Đảm bảo kích thước của icon */
+        }
+      }
+    }
+  }
+
+  .homepage-background {
+    background-color: azure;
+    min-height: calc(
+      100vh - 90px
+    ); /* Đảm bảo phần nền phủ đầy màn hình dưới header */
+    padding: 20px 0; /* Thêm khoảng đệm phía trên và dưới để nội dung không bị dính sát */
+
+    .products {
+      margin-left: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; // Sắp xếp các sản phẩm thành 2 cột
+      gap: 10px; // Khoảng cách giữa các hàng sản phẩm
+
+      .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px; // Khoảng cách giữa các sản phẩm trong hàng
+
+        .product-item {
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 20px;
+          width: 500px; // Khung sản phẩm chỉ chiếm 50% chiều rộng của container
+          box-sizing: border-box; // Đảm bảo rằng padding và border không tăng kích thước của phần tử
+          display: flex; // Sử dụng Flexbox để sắp xếp nội dung
+          align-items: center; // Căn giữa theo chiều dọc
+          margin-bottom: 20px; // Khoảng cách giữa các sản phẩm
+          text-align: left; // Căn trái nội dung
+
+          .product-image {
+            border: 1px solid #000000;
+            width: 150px;
+            height: 150px; // Đặt chiều rộng tối đa cho ảnh
+            margin-right: 20px; // Khoảng cách giữa ảnh và nội dung bên phải
+            flex-shrink: 0; // Đảm bảo ảnh không bị co lại
+          }
+
+          .product-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+          }
+
+          .rating {
+            display: flex; // Sử dụng Flexbox để sắp xếp các ngôi sao
+            align-items: center;
+            margin-top: 10px;
+          }
+
+          .star-icon {
+            color: black;
+            font-size: 16px;
+            margin-right: 8px;
+            cursor: pointer;
+          }
+
+          .star-icon.yellow {
+            color: gold;
+          }
+
+          .star-icon:hover {
+            color: gold;
+          }
+
+          h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 14px;
+            margin-bottom: 10px;
+          }
+
+          &:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+
+          &:nth-child(odd) {
+            margin-right: 0; // Loại bỏ khoảng cách bên phải của sản phẩm ở cột bên trái
+          }
+        }
+      }
+    }
+  }
+}

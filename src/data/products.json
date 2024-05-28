@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Product 1",
+    "price": 100000,
+    "image": "/assets/images/iphone1.jpg",
+    "rating": 0
+  },
+  {
+    "id": 2,
+    "name": "Product 2",
+    "price": 200000,
+    "image": "/assets/images/iphone2.jpg",
+    "rating": 0
+  }
+]

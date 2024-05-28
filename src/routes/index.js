@@ -1,18 +1,19 @@
 import { HeaderOnly } from "src/components/Layout";
 import Homepage from "~/pages/Homepage";
-import login from "~/pages/Login";
-import product from "~/pages/Shopproduct";
-import cart from "~/pages/Shopcart";
-import search from "~/pages/Search";
-import profile from "~/pages/Profile";
+import Login from "~/pages/Login";
+import ProductDetail from "~/pages/ProductDetail";
+import Cart from "~/pages/Shopcart";
+import Profile from "~/pages/Profile";
+
 // public routers
 const publicRoutes = [
   { path: "/", component: Homepage },
-  { path: "/login", component: login, layout: null },
-  { path: "/search", component: search, layout: null },
-  { path: "/product", component: product, layout: HeaderOnly },
-  { path: "/cart", component: cart, layout: HeaderOnly },
-  { path: "/profile", component: profile, layout: HeaderOnly },
+  { path: "/login", component: Login, layout: null },
+  { path: "/product/:productId", component: ProductDetail, layout: HeaderOnly },
+  { path: "/cart", component: Cart, layout: HeaderOnly },
+  { path: "/profile", component: Profile, layout: HeaderOnly },
 ];
+
 const privateRoutes = [];
+
 export { publicRoutes, privateRoutes };

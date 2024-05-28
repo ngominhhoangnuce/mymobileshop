@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 import images from "src/assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
-import styles from "./Login.module.scss";
+import styles from "./Login.scss";
 
 const cx = classNames.bind(styles);
 

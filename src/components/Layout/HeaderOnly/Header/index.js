@@ -15,7 +15,7 @@ function Header() {
         </div>
         <h1 className={cx("header-title")}>Mobile Shopping</h1>
         <div className={cx("logo-user")}>
-          <Link to="/">
+          <Link to="/login">
             <img src={images.user} alt="logouser" />
           </Link>
         </div>
