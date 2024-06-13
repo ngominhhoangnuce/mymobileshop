@@ -1,50 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart, removeAllFromCart } from "src/actions/cartActions"; // Import cả hàm xóa tất cả
 
-function Cart() {
-  const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+import classNames from "classnames/bind"; // Import classNames/bind
+import styles from "./Shopcart.module.scss"; // Import SCSS module
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(
-          `https://localhost:7202/api/Product/Get/${productId}`
-        );
-        setProduct(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error", error);
-        setError(error);
-        setLoading(false);
-      }
-    };
+const cx = classNames.bind(styles); // Bind styles to classNames
 
-    fetchProduct();
-  }, [productId]);
+const Cart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
 
-  if (loading) {
-    return <p>Đang tải...</p>;
-  }
+  const handleRemoveFromCart = (productId) => {
+    dispatch(removeFromCart(productId));
+  };
 
-  if (error) {
-    return <p>Đã có lỗi xảy ra: {error.message}</p>;
-  }
+  const handleRemoveAllFromCart = () => {
+    dispatch(removeAllFromCart());
+  };
 
   return (
-    <div>
-      <h1>Giỏ Hàng</h1>
-      {/* Hiển thị thông tin sản phẩm */}
-      <div>
-        <p>{product.name}</p>
-        <p>{product.price} VND</p>
-        {/* Hiển thị các thông tin khác của sản phẩm */}
-      </div>
+    <div className={cx("cart-container")}>
+      <h2>Shopping Cart</h2>
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <div>
+          <ul>
+            {cartItems.map((item) => (
+              <li key={item.id}>
+                {item.name} - {item.price} VND
+                <button
+                  className={cx("remove-button")}
+                  onClick={() => handleRemoveFromCart(item.id)}
+                >
+                  Xóa
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button
+            className={cx("remove-all-button")}
+            onClick={handleRemoveAllFromCart}
+          >
+            Xóa tất cả
+          </button>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default Cart;

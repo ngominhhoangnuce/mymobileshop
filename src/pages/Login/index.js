@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Thay đổi import
+import { useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
-import images from "src/assets";
+import images from "~/assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
-import styles from "./Login.scss";
+import styles from "./Login.scss"; // Đổi tên cho đúng
+import { UserContext } from "../../contexts/UserContext"; // Đường dẫn tới UserContext
 
 const cx = classNames.bind(styles);
 
 const LoginForm = () => {
-  const navigate = useNavigate(); // Khởi tạo navigate từ hook useNavigate
+  const navigate = useNavigate();
   const [UserName, setUsername] = useState("");
   const [Password, setPassword] = useState("");
+  const { setCurrentUser } = useContext(UserContext);
+
+  useEffect(() => {
+    // Kiểm tra xem có dữ liệu UserName và Password trong localStorage không
+    const storedUserName = localStorage.getItem("UserName");
+    const storedPassword = localStorage.getItem("Password");
+    if (storedUserName && storedPassword) {
+      setUsername(storedUserName);
+      setPassword(storedPassword);
+    }
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -26,18 +39,24 @@ const LoginForm = () => {
       );
 
       if (response.status === 200) {
-        // Xác thực thành công
         alert("Đăng nhập thành công");
+
+        // Lưu UserName và Password vào localStorage
+        localStorage.setItem("UserName", UserName);
+        localStorage.setItem("Password", Password);
+
+        setCurrentUser(true); // Cập nhật currentUser thành true
         navigate("/"); // Điều hướng tới trang homepage
       } else {
-        // Xác thực thất bại
         alert("Tên đăng nhập hoặc mật khẩu không chính xác!");
+        setCurrentUser(false); // Cập nhật currentUser thành false
       }
     } catch (error) {
-      // Xử lý lỗi khi gọi API
       console.error("Error:", error);
+      setCurrentUser(false); // Cập nhật currentUser thành false
     }
   };
+
   return (
     <div className={cx("login-form")} aria-label="Form đăng nhập">
       <form onSubmit={handleLogin}>
@@ -45,31 +64,30 @@ const LoginForm = () => {
           <img src={images.logologin} alt="logologin" />
         </div>
         <div className={cx("form-group")}>
-          <div className={cx("input-without-icon")}>
+          <div className={cx("input-with-icon")}>
             <FontAwesomeIcon icon={faUser} className={cx("icon")} />
             <input
-              type="UserName"
+              type="text"
               id="UserName"
               placeholder="Tên đăng nhập"
               value={UserName}
               onChange={(e) => setUsername(e.target.value)}
-              className={cx("input-field")}
+              className={cx("input-field", "username")}
             />
           </div>
-        </div>
-        <div className={cx("form-group")}>
-          <div className={cx("input-without-icon")}>
+          <div className={cx("input-with-icon")}>
             <FontAwesomeIcon icon={faLock} className={cx("icon")} />
             <input
-              type="Password"
+              type="password"
               id="Password"
               placeholder="Mật khẩu"
               value={Password}
               onChange={(e) => setPassword(e.target.value)}
-              className={cx("input-field")}
+              className={cx("input-field", "password")}
             />
           </div>
         </div>
+
         <div className={cx("form-group")}>
           <div className={cx("checkbox-forgot-Password")}>
             <label className={cx("checkbox-label")} htmlFor="remember-me">

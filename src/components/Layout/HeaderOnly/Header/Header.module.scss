@@ -28,6 +28,41 @@
 .logo-user {
   width: 69px;
   height: 69px;
+  display: flex;
+  flex-direction: row-reverse; /* Hiển thị phần chữ bên trái */
+  align-items: center;
+  cursor: pointer;
   margin-left: auto;
   margin-right: 50px;
+}
+
+.logo-user span {
+  font-weight: bold;
+  margin-right: 5px; /* Khoảng cách giữa icon và chữ */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  margin-right: 10px; /* Khoảng cách giữa logo và nút user */
+}
+
+.button-login {
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+.link-login:hover {
+  background-color: #007acc;
 }

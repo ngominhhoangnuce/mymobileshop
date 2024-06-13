@@ -1,64 +1,67 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import styles from "./ProductDetail.scss";
+import { addToCart } from "src/actions/cartActions";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import classNames from "classnames/bind";
+import styles from "./ProductDetail.module.scss";
 
 const cx = classNames.bind(styles);
 
-function ProductDetail() {
-  const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [cartCount, setCartCount] = useState(0); // State to track cart count
-  const navigate = useNavigate();
+const ProductDetail = () => {
+  const { productId } = useParams(); // Lấy productId từ URL
+  const [product, setProduct] = useState(null); // State lưu thông tin sản phẩm
+  const [loading, setLoading] = useState(true); // Trạng thái loading
+  const [error, setError] = useState(null); // Trạng thái lỗi
+  const dispatch = useDispatch(); // useDispatch để gửi action đến Redux store
+  const navigate = useNavigate(); // Hook navigate từ react-router-dom
+  const [cartCount, setCartCount] = useState(0);
 
-  const handleBuyNow = () => {
-    // Thực hiện các thao tác khi nhấp vào nút "Mua Ngay" ở đây
-    console.log("Mua Ngay");
-    // Chờ 5 giây trước khi chuyển hướng
-    setTimeout(() => {
-      navigate("/cart");
-    }, 500); //độ trễ
-  };
-
-  const handleAddToCart = () => {
-    // Thực hiện các thao tác khi nhấp vào nút "Thêm vào Giỏ Hàng" ở đây
-    setTimeout(() => {
-      setCartCount(cartCount + 1);
-      console.log("Thêm vào Giỏ Hàng");
-    }, 200); // Thực thi sau 500ms (0.5 giây)
-  };
-  const handleCartIconClick = () => {
-    navigate("/cart");
-  };
   useEffect(() => {
+    // Hàm async để fetch dữ liệu sản phẩm từ API
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
           `https://localhost:7202/api/Product/Get/${productId}`
         );
-        setProduct(response.data);
-        setLoading(false);
+        setProduct(response.data); // Cập nhật thông tin sản phẩm vào state
+        setLoading(false); // Đã load thành công, không còn loading
       } catch (error) {
-        console.error("Error", error);
-        setError(error);
-        setLoading(false);
+        console.error("Lỗi khi tải sản phẩm:", error);
+        setError(error); // Có lỗi xảy ra, cập nhật state error
+        setLoading(false); // Đã load xong (thành công hoặc thất bại)
       }
     };
 
-    fetchProduct();
+    fetchProduct(); // Gọi hàm fetchProduct khi component được render và mỗi khi productId thay đổi
   }, [productId]);
 
+  const handleBuyNow = () => {
+    // Xử lý khi người dùng nhấn "Mua ngay"
+    dispatch(addToCart({ ...product, quantity: 1 })); // Thêm sản phẩm vào giỏ hàng với quantity là 1
+    navigate("/cart"); // Điều hướng đến trang giỏ hàng
+  };
+
+  const handleCartIconClick = () => {
+    navigate("/cart"); // Điều hướng đến trang giỏ hàng khi nhấn vào biểu tượng giỏ hàng
+  };
+
+  const handleAddToCart = () => {
+    // Thực hiện các thao tác khi nhấp vào nút "Thêm vào Giỏ Hàng" ở đây
+    setTimeout(() => {
+      setCartCount(cartCount + 1); // Tăng số lượng trong giỏ hàng
+      console.log("Thêm vào Giỏ Hàng");
+    }, 200); // Thực thi sau 200ms (0.2 giây)
+  };
+
   if (loading) {
-    return <p>Đang tải...</p>;
+    return <p>Đang tải sản phẩm...</p>; // Nếu đang loading, hiển thị thông báo
   }
 
   if (error) {
-    return <p>Đã có lỗi xảy ra: {error.message}</p>;
+    return <p>Có lỗi xảy ra khi tải sản phẩm: {error.message}</p>; // Nếu có lỗi, hiển thị thông báo lỗi
   }
 
   return (
@@ -84,10 +87,9 @@ function ProductDetail() {
             </div>
           </div>
         </header>
-
         <div className={cx("product-detail-page")}>
           <img
-            src={product.image}
+            src={`https://localhost:7202/images/iphone1.jpg`}
             alt={product.name}
             className={cx("product-image")}
           />
@@ -124,6 +126,6 @@ function ProductDetail() {
       </div>
     </div>
   );
-}
+};
 
 export default ProductDetail;

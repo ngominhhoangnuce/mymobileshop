@@ -8,6 +8,7 @@
   justify-content: center; // Căn giữa theo chiều ngang
   align-items: center; // Căn giữa theo chiều dọc
 }
+
 .form-group {
   position: relative;
   display: flex; /* Sử dụng flexbox để căn chỉnh các input vào giữa form */
@@ -15,7 +16,34 @@
   align-items: center; /* Căn giữa các phần tử theo chiều ngang */
   justify-content: center;
   margin-bottom: 20px; /* Khoảng cách 10px giữa các nhóm trong form theo chiều dọc */
+
+  .input-with-icon {
+    display: flex; /* Sử dụng flexbox để căn chỉnh các input vào giữa form */
+    flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+    position: relative;
+    margin-bottom: 20px;
+    justify-content: center;
+
+    .input-field {
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
+      border: none;
+      width: 500px;
+      height: 70px;
+      border-radius: 5px;
+      padding-left: 60px; // Đảm bảo khoảng cách đủ cho icon
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%; // Điều chỉnh vị trí của icon bên trong input
+      left: 20px; // Điều chỉnh vị trí của icon bên trong input
+      transform: translateY(-50%);
+    }
+  }
 }
+
 .logo-login {
   display: flex;
   justify-content: center;
@@ -32,34 +60,6 @@
   padding: 20px; // Khoảng cách giữa hình tròn và hình ảnh
 }
 
-.input-with-icon {
-  display: flex; /* Sử dụng flexbox để căn chỉnh các input vào giữa form */
-  flex-direction: column; /* Xếp các phần tử theo chiều dọc */
-  align-items: center; /* Căn giữa các phần tử theo chiều ngang */
-  position: relative;
-  margin-bottom: 20px;
-  justify-content: center;
-}
-
-.input-field {
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  border: none;
-  width: 500px;
-  height: 70px;
-  border-radius: 5px;
-  padding-left: 60px; // Đảm bảo khoảng cách đủ cho icon
-  &:hover {
-    width: 500px;
-  }
-}
-
-.icon {
-  position: absolute;
-  top: 47%;
-  left: 30px; // Điều chỉnh vị trí của icon bên trong input
-  transform: translateY(-50%);
-}
 .button-container {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
@@ -93,6 +93,7 @@ button[type="submit"] {
     margin-top: 80px;
   }
 }
+
 .checkbox-forgot-password {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
@@ -100,6 +101,7 @@ button[type="submit"] {
   display: flex;
   align-items: center;
 }
+
 input[type="checkbox"] {
   margin-right: 5px; /* Khoảng cách giữa checkbox và chữ */
   cursor: pointer; /* Đổi con trỏ chuột khi di chuột qua checkbox */
@@ -109,10 +111,16 @@ input[type="checkbox"] {
   color: #ffffff;
   margin-right: 250px; // Để tạo khoảng cách giữa checkbox và dòng "Bạn quên mật khẩu?"
 }
+
 .forgot-password {
   color: #fff;
-
   &:hover {
     color: red; // Đổi sang màu đỏ khi di chuột qua
   }
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
 }

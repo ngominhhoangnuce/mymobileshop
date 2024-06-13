@@ -12,10 +12,10 @@ import {
 const cx = classNames.bind(styles);
 
 function Navbar() {
-  const [isMenuVisible, setMenuVisible] = useState(false);
+  const [isMenuVisible, setMenuVisible] = useState(true); // Đặt trạng thái mặc định là true để menu luôn hiển thị
 
   const toggleMenu = () => {
-    setMenuVisible(!isMenuVisible);
+    setMenuVisible(!isMenuVisible); // Thay đổi trạng thái hiển thị của menu khi click vào icon-wrapper
   };
 
   const handleNavigate = (route) => {
@@ -31,15 +31,10 @@ function Navbar() {
           <FontAwesomeIcon icon={faBars} className={cx("icon")} />
         </div>
       </div>
-      {isMenuVisible && (
+      {isMenuVisible && ( // Chỉ hiển thị menu nếu isMenuVisible là true
         <div className={cx("menu")}>
           <ul>
-            <li
-              className={cx("menu-item")}
-              onClick={() => handleNavigate("/")}
-            >
-              {" "}
-              {/* Gọi hàm handleNavigate khi click vào mục "Shop" */}
+            <li className={cx("menu-item")} onClick={() => handleNavigate("/")}>
               <FontAwesomeIcon icon={faShop} className={cx("item-icon")} />
               Shop
             </li>
@@ -47,8 +42,6 @@ function Navbar() {
               className={cx("menu-item")}
               onClick={() => handleNavigate("/cart")}
             >
-              {" "}
-              {/* Gọi hàm handleNavigate khi click vào mục "Cart" */}
               <FontAwesomeIcon
                 icon={faCartShopping}
                 className={cx("item-icon")}
@@ -59,8 +52,6 @@ function Navbar() {
               className={cx("menu-item")}
               onClick={() => handleNavigate("/profile")}
             >
-              {" "}
-              {/* Gọi hàm handleNavigate khi click vào mục "My Profile" */}
               <FontAwesomeIcon icon={faUser} className={cx("item-icon")} />
               My Profile
             </li>

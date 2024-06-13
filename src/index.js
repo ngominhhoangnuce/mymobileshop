@@ -1,21 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { configureStore } from "./store/configureStore";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import GlobalStyles from "./components/GlobalStyles";
 
-// Import CartProvider
+const { store, persistor } = configureStore();
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <GlobalStyles>
+ReactDOM.render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <App />
-    </GlobalStyles>
-  </React.StrictMode>
+    </PersistGate>
+  </Provider>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

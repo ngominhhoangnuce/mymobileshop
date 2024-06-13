@@ -1,6 +1,6 @@
 .product-detail {
   .productdetail-header {
-    width: 1455px;
+    width: 1400px;
     height: 100px;
     background-color: azure;
     color: black;
@@ -10,7 +10,7 @@
     align-items: center;
     border-radius: 0px;
     padding: 0 20px;
-    border: 1px solid #000000;
+
     .productdetail-header .icons {
       position: relative;
     }
@@ -75,7 +75,6 @@
     object-fit: cover; /* Đảm bảo ảnh không bị méo khi căn chỉnh kích thước */
     align-self: flex-start;
     margin-right: 20px; /* Để tạo khoảng cách giữa ảnh và mô tả */
-    border: 1px solid #000000;
     margin-left: 50px;
   }
 
