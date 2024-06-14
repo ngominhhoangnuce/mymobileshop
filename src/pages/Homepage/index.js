@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -37,8 +36,8 @@ function Homepage() {
 
         const productsData = response.data.map((product) => ({
           ...product,
-          image: product.images[0].path,
-          rating: 0, // Mặc định đánh giá là 0 nếu không có
+          image: product.images[0]?.path || "default-image-path.jpg",
+          rating: product.rating || 0, // Sử dụng rating từ dữ liệu API, nếu không có thì mặc định là 0
         }));
 
         setProducts(productsData);
@@ -56,27 +55,6 @@ function Homepage() {
 
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
-  };
-
-  const handleRatingChange = (productId, rating) => {
-    const productName = products.find(
-      (product) => product.id === productId
-    ).name;
-    console.log(
-      `Đã đánh giá ${rating} sao cho sản phẩm "${productName}" (ID: ${productId})`
-    );
-
-    // Cập nhật đánh giá cho sản phẩm cụ thể
-    const updatedProducts = products.map((product) => {
-      if (product.id === productId) {
-        return { ...product, rating };
-      }
-      return product;
-    });
-    setProducts(updatedProducts);
-
-    // Áp dụng bộ lọc sau khi cập nhật đánh giá
-    applyFilters(updatedProducts);
   };
 
   const applyFilters = (productsToFilter = products) => {
@@ -97,9 +75,41 @@ function Homepage() {
     setShowFilterPopup(!showFilterPopup);
   };
 
-  const handleFilterByPrice = () => {
-    applyFilters(products);
-    setShowFilterPopup(false);
+  const handleFilterByPrice = async () => {
+    setShowFilterPopup(false); // Ẩn popup lọc giá
+    try {
+      setLoading(true); // Đang tải dữ liệu
+
+      const response = await axios.get(
+        "https://localhost:7202/api/Product/FilterSanphams/filter",
+        {
+          params: {
+            minPrice,
+            maxPrice,
+            minRating,
+            maxRating,
+          },
+        }
+      );
+
+      const filteredProductsData = response.data.map((product) => ({
+        ...product,
+        image: product.images[0]?.path || "default-image-path.jpg",
+        rating: product.rating || 0, // Sử dụng rating từ dữ liệu API, nếu không có thì mặc định là 0
+      }));
+
+      setFilteredProducts(filteredProductsData);
+      setLoading(false); // Dừng tải dữ liệu
+
+      if (filteredProductsData.length === 0) {
+        console.log("Không có sản phẩm nào trong khoảng giá này");
+        // Hiển thị thông báo hoặc xử lý khi không có sản phẩm nào trong khoảng giá
+      }
+    } catch (error) {
+      console.error("Lỗi khi lọc sản phẩm theo giá:", error);
+      setError(error);
+      setLoading(false); // Dừng tải dữ liệu
+    }
   };
 
   const handleFilterByRating = () => {
@@ -129,8 +139,8 @@ function Homepage() {
 
         const productsData = response.data.products.map((product) => ({
           ...product,
-          image: product.images[0].path,
-          rating: 0, // Mặc định đánh giá là 0 nếu không có
+          image: product.images[0]?.path || "default-image-path.jpg",
+          rating: product.rating || 0, // Sử dụng rating từ dữ liệu API, nếu không có thì mặc định là 0
         }));
 
         setFilteredProducts(productsData);
@@ -236,7 +246,7 @@ function Homepage() {
               {filteredProducts.map((product) => (
                 <div key={product.id} className={cx("product-item")}>
                   <img
-                    src={product.image} // Sử dụng đường dẫn hình ảnh từ product.image
+                    src={product.image}
                     alt={product.name}
                     className={cx("product-image")}
                     onClick={() => handleProductClick(product.id)}
@@ -254,9 +264,6 @@ function Homepage() {
                           className={cx("star-icon", {
                             gold: index < product.rating,
                           })}
-                          onClick={() =>
-                            handleRatingChange(product.id, index + 1)
-                          }
                         />
                       ))}
                     </div>
