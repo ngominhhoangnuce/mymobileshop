@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { addToCart } from "src/actions/cartActions";
@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./ProductDetail.module.scss";
+import { calculateCartCount } from "src/reducers/cartReducer";
 
 const cx = classNames.bind(styles);
 
@@ -17,7 +18,8 @@ const ProductDetail = () => {
   const [error, setError] = useState(null); // Trạng thái lỗi
   const dispatch = useDispatch(); // useDispatch để gửi action đến Redux store
   const navigate = useNavigate(); // Hook navigate từ react-router-dom
-  const [cartCount, setCartCount] = useState(0);
+  const cartItems = useSelector((state) => state.cart.items); // Lấy danh sách sản phẩm trong giỏ hàng từ Redux store
+  const cartCount = useSelector((state) => calculateCartCount(cartItems)); // Lấy tổng số lượng sản phẩm trong giỏ hàng
 
   useEffect(() => {
     // Hàm async để fetch dữ liệu sản phẩm từ API
@@ -49,11 +51,8 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
-    // Thực hiện các thao tác khi nhấp vào nút "Thêm vào Giỏ Hàng" ở đây
-    setTimeout(() => {
-      setCartCount(cartCount + 1); // Tăng số lượng trong giỏ hàng
-      console.log("Thêm vào Giỏ Hàng");
-    }, 200); // Thực thi sau 200ms (0.2 giây)
+    // Xử lý khi người dùng nhấn "Thêm vào Giỏ Hàng"
+    dispatch(addToCart({ ...product, quantity: 1 })); // Thêm sản phẩm vào giỏ hàng với quantity là 1
   };
 
   if (loading) {

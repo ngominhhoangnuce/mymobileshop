@@ -76,7 +76,11 @@ function Homepage() {
     setProducts(updatedProducts);
 
     // Áp dụng bộ lọc sau khi cập nhật đánh giá
-    const filtered = updatedProducts.filter((product) => {
+    applyFilters(updatedProducts);
+  };
+
+  const applyFilters = (productsToFilter = products) => {
+    const filtered = productsToFilter.filter((product) => {
       const matchesSearch = product.name
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
@@ -94,28 +98,12 @@ function Homepage() {
   };
 
   const handleFilterByPrice = () => {
-    const filtered = products.filter((product) => {
-      const matchesSearch = product.name
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      const matchesPrice =
-        product.price >= minPrice && product.price <= maxPrice;
-      return matchesSearch && matchesPrice;
-    });
-    setFilteredProducts(filtered);
+    applyFilters(products);
     setShowFilterPopup(false);
   };
 
   const handleFilterByRating = () => {
-    const filtered = products.filter((product) => {
-      const matchesSearch = product.name
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      const matchesRating =
-        product.rating >= minRating && product.rating <= maxRating;
-      return matchesSearch && matchesRating;
-    });
-    setFilteredProducts(filtered);
+    applyFilters(products);
     setShowFilterPopup(false);
   };
 
@@ -128,15 +116,31 @@ function Homepage() {
     });
   };
 
-  //Tìm kiếm theo tên
-  const handleSearchClick = () => {
+  // Tìm kiếm theo tên
+  const handleSearchClick = async () => {
     setShowSearch(!showSearch); // Đảo ngược trạng thái hiển thị popup tìm kiếm
     if (!showSearch) {
       // Nếu đang ẩn popup tìm kiếm, thực hiện logic tìm kiếm
-      const filtered = filterProductsBySearchTerm(products, searchTerm);
-      setFilteredProducts(filtered);
+      try {
+        const response = await axios.post(
+          "https://localhost:7202/api/Product/GetTypeProduct",
+          { name: searchTerm }
+        );
+
+        const productsData = response.data.products.map((product) => ({
+          ...product,
+          image: product.images[0].path,
+          rating: 0, // Mặc định đánh giá là 0 nếu không có
+        }));
+
+        setFilteredProducts(productsData);
+      } catch (error) {
+        console.error("Lỗi khi tìm kiếm sản phẩm:", error);
+        setError(error);
+      }
     }
   };
+
   return (
     <div className={cx("homepage")}>
       <header className={cx("homepage-header")}>
@@ -232,7 +236,7 @@ function Homepage() {
               {filteredProducts.map((product) => (
                 <div key={product.id} className={cx("product-item")}>
                   <img
-                    src={`https://localhost:7202/images/iphone1.jpg`}
+                    src={product.image} // Sử dụng đường dẫn hình ảnh từ product.image
                     alt={product.name}
                     className={cx("product-image")}
                     onClick={() => handleProductClick(product.id)}

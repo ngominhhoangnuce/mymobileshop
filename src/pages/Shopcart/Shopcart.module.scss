@@ -3,6 +3,7 @@
   max-width: 1455px;
   font-size: 20px;
   padding: 20px;
+  border-bottom: 1px solid #000000;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -29,6 +30,7 @@
         align-items: center;
         padding: 10px;
         border-top: 1px solid black;
+        border-bottom: 1px solid #000000;
         border-radius: 5px;
         margin-bottom: 10px;
         width: 100%; /* Làm cho các mục trong giỏ hàng chiếm hết chiều rộng */
@@ -49,17 +51,12 @@
             .item-description {
               margin-top: 10px;
               margin-bottom: 10px;
-              width: 700px; /* Độ rộng của mô tả */
+              width: 1000px; /* Độ rộng của mô tả */
               font-size: 14px; /* Cỡ chữ */
-              font-family: "Roboto", sans-serif; /* Sử dụng font Roboto */
             }
 
             .item-quantity {
-              display: flex;
-              align-items: center;
               margin-top: 10px;
-              margin-bottom: 10px;
-
               .quantity-button {
                 font-size: 20px;
                 color: black;
@@ -76,17 +73,10 @@
         }
 
         .remove-button {
-          font-size: 16px;
-          background-color: #dc3545;
-          color: #fff;
+          font-size: 20px;
+          color: black;
           border: none;
-          padding: 8px 12px;
           border-radius: 4px;
-          cursor: pointer;
-
-          &:hover {
-            background-color: #c82333;
-          }
         }
       }
     }
@@ -103,7 +93,7 @@
       cursor: pointer;
       text-align: center;
       transition: background-color 0.3s ease;
-
+      margin-left: 1280px;
       &:hover {
         background-color: #c82333;
       }
@@ -111,8 +101,9 @@
   }
 
   .total-section {
+    margin-left: 1150px;
     align-self: flex-end; /* Đưa phần tổng giá xuống góc phải dưới */
-    width: 300px; /* Đặt chiều rộng của phần tổng giá */
+    width: 250px; /* Đặt chiều rộng của phần tổng giá */
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;

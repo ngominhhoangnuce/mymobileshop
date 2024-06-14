@@ -1,3 +1,4 @@
+// cartReducer.js
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
@@ -74,6 +75,11 @@ export const calculateTotal = (items) => {
   const taxAmount = subtotal * TAX_RATE;
   const total = subtotal + taxAmount;
   return total;
+};
+
+// Hàm tính tổng số lượng sản phẩm trong giỏ hàng
+export const calculateCartCount = (items) => {
+  return items.reduce((count, item) => count + item.quantity, 0);
 };
 
 export default cartReducer;

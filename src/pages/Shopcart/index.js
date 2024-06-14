@@ -86,7 +86,7 @@ const Cart = () => {
                     className={cx("remove-button")}
                     onClick={() => handleRemoveFromCart(item.id)}
                   >
-                    Xóa
+                    x
                   </button>
                 </li>
               ))}
