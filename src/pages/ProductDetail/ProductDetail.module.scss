@@ -5,13 +5,13 @@
     color: black;
     border-bottom: 1px solid #000000;
     display: flex;
-    flex-direction: column; /* Chia theo chiều dọc */
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     border-radius: 0px;
     padding: 0 20px;
 
-    .productdetail-header .icons {
+    .icons {
       position: relative;
     }
 
@@ -52,6 +52,7 @@
         font-weight: 500;
         margin-left: 10px;
       }
+
       .search-container {
         display: flex;
         align-items: center;
@@ -62,6 +63,7 @@
       }
     }
   }
+
   .product-detail-page {
     height: 1000px;
     display: flex;
@@ -70,11 +72,11 @@
   }
 
   .product-image {
-    width: 300px; /* Đặt chiều rộng là 500px */
-    height: 300px; /* Đặt chiều cao là 500px */
-    object-fit: cover; /* Đảm bảo ảnh không bị méo khi căn chỉnh kích thước */
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
     align-self: flex-start;
-    margin-right: 20px; /* Để tạo khoảng cách giữa ảnh và mô tả */
+    margin-right: 20px;
     margin-left: 50px;
   }
 
@@ -90,48 +92,51 @@
   }
 
   .description {
-    font-family: "Roboto", sans-serif; /* Sử dụng font Roboto */
-    font-size: 14px; /* Đặt kích thước font chữ */
-    font-weight: 500; /* Đặt độ dày cho font chữ */
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
   }
+
   h1 {
     margin-top: 0px;
   }
+
   .star-icon {
     font-size: 30px;
     color: gold;
   }
 
   .button-container {
-    margin-top: 20px; /* Để tạo khoảng cách giữa phần đánh giá và phần nút */
-    display: flex; /* Sử dụng flexbox để bố trí các nút */
-    align-items: center; /* Căn giữa theo chiều dọc (nếu cần) */
-    justify-content: flex-start; /* Căn chỉnh các nút sang mép trái */
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .buy-now-button,
   .add-to-cart-button {
-    padding: 10px 20px; /* Đặt lề cho nút */
-    margin-right: 20px; /* Để tạo khoảng cách giữa các nút */
-    cursor: pointer; /* Biểu tượng con trỏ khi di chuột qua */
-    border: none; /* Loại bỏ đường viền */
-    border-radius: 5px; /* Bo góc của nút */
-    font-size: 16px; /* Cỡ chữ */
+    padding: 10px 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
   }
 
   .buy-now-button {
     width: 200px;
-    background-color: #00c2ff; /* Màu nền cho nút "Mua Ngay" */
-    color: white; /* Màu chữ cho nút "Mua Ngay" */
+    background-color: #00c2ff;
+    color: white;
   }
 
   .add-to-cart-button {
     width: 200px;
-    background-color: #00ff19; /* Màu nền cho nút "Thêm vào Giỏ Hàng" */
-    color: white; /* Màu chữ cho nút "Thêm vào Giỏ Hàng" */
+    background-color: #00ff19;
+    color: white;
   }
+
   .buy-now-button:hover,
   .add-to-cart-button:hover {
-    background-color: red; /* Màu nền đỏ khi hover */
+    background-color: red;
   }
 }

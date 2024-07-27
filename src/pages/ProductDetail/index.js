@@ -37,30 +37,28 @@ const ProductDetail = () => {
       }
     };
 
-    fetchProduct(); // Gọi hàm fetchProduct khi component được render và mỗi khi productId thay đổi
+    fetchProduct();
   }, [productId]);
 
   const handleBuyNow = () => {
     // Xử lý khi người dùng nhấn "Mua ngay"
     dispatch(addToCart({ ...product, quantity: 1 })); // Thêm sản phẩm vào giỏ hàng với quantity là 1
-    navigate("/cart"); // Điều hướng đến trang giỏ hàng
+    navigate("/cart");
   };
 
   const handleCartIconClick = () => {
-    navigate("/cart"); // Điều hướng đến trang giỏ hàng khi nhấn vào biểu tượng giỏ hàng
+    navigate("/cart");
   };
 
   const handleAddToCart = () => {
-    // Xử lý khi người dùng nhấn "Thêm vào Giỏ Hàng"
     dispatch(addToCart({ ...product, quantity: 1 })); // Thêm sản phẩm vào giỏ hàng với quantity là 1
   };
 
   if (loading) {
-    return <p>Đang tải sản phẩm...</p>; // Nếu đang loading, hiển thị thông báo
+    return <p>Đang tải sản phẩm...</p>;
   }
-
   if (error) {
-    return <p>Có lỗi xảy ra khi tải sản phẩm: {error.message}</p>; // Nếu có lỗi, hiển thị thông báo lỗi
+    return <p>Có lỗi xảy ra khi tải sản phẩm: {error.message}</p>;
   }
 
   return (

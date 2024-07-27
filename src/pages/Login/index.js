@@ -5,8 +5,8 @@ import classNames from "classnames/bind";
 import images from "~/assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
-import styles from "./Login.scss"; // Đổi tên cho đúng
-import { UserContext } from "../../contexts/UserContext"; // Đường dẫn tới UserContext
+import styles from "./Login.scss";
+import { UserContext } from "../../contexts/UserContext";
 
 const cx = classNames.bind(styles);
 
@@ -45,15 +45,15 @@ const LoginForm = () => {
         localStorage.setItem("UserName", UserName);
         localStorage.setItem("Password", Password);
 
-        setCurrentUser(true); // Cập nhật currentUser thành true
-        navigate("/"); // Điều hướng tới trang homepage
+        setCurrentUser(true);
+        navigate("/");
       } else {
         alert("Tên đăng nhập hoặc mật khẩu không chính xác!");
-        setCurrentUser(false); // Cập nhật currentUser thành false
+        setCurrentUser(false);
       }
     } catch (error) {
       console.error("Error:", error);
-      setCurrentUser(false); // Cập nhật currentUser thành false
+      setCurrentUser(false);
     }
   };
 

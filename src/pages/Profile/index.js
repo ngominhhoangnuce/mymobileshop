@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import classNames from "classnames/bind"; // Import classNames
-import styles from "./Profile.scss"; // Import file SCSS cho phần giao diện
-import images from "src/assets"; // Import ảnh từ thư mục assets
+import classNames from "classnames/bind";
+import styles from "./Profile.scss";
+import images from "src/assets";
 
-const cx = classNames.bind(styles); // Kết hợp styles với classNames
+const cx = classNames.bind(styles);
 
 const MyProfile = () => {
-  const [sex, setSex] = useState("Male"); // State to hold the selected sex
-  const [dateOfBirth, setDateOfBirth] = useState(""); // State to hold the date of birth
-  const homeAddress = "15, Duy Tan, Dich Vong Hau, Cau Giay, Ha Noi"; // Default home address
-  const companyAddress = "15, Duy Tan, Dich Vong Hau, Cau Giay, Ha Noi"; // Default company address
+  const [sex, setSex] = useState("Male");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const homeAddress = "15, Duy Tan, Dich Vong Hau, Cau Giay, Ha Noi";
+  const companyAddress = "15, Duy Tan, Dich Vong Hau, Cau Giay, Ha Noi";
 
   const handleSexChange = (event) => {
-    setSex(event.target.value); // Update the selected sex when radio button changes
+    setSex(event.target.value);
   };
 
   const handleDateOfBirthChange = (event) => {
-    setDateOfBirth(event.target.value); // Update the date of birth
+    setDateOfBirth(event.target.value);
   };
 
   return (
